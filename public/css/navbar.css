@@ -1,0 +1,83 @@
+li
+{
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 13px 17px;
+}
+
+ul
+{
+    background-color:#808080;
+}
+
+#Photo
+{
+    color: #ffffff;
+    font-family: sans-serif; 
+    font-weight: bold;
+
+}
+#Hub
+{
+    background-color: #ffa500;
+    border-radius: 7px;
+    padding-right: 6px;
+    padding-left: 6px;
+
+    color: #1b1b1b;
+    font-family:sans-serif; 
+    font-weight: bold;
+}
+
+hr
+{
+    border: 2px solid #ffffff;
+    margin-bottom: 23px;
+}
+
+a
+{
+    color: #ffffff;
+}
+
+/* for the flash message */
+#flash-message 
+{
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%,0);
+    z-index: 9999;
+
+}
+
+/* for div tags that are a child of the flash message */
+#flash-message div 
+{
+    text-align: center;
+    color: #1b1b1b;
+    background: #ffa500;
+    border-radius: 1px;
+    padding-block: 3px;
+}
+
+#logo 
+{
+    float: left;
+    display: block;
+}
+
+#searchText
+{
+    float: middle;
+    width: 70%;
+}
+#searchButton 
+{
+    float: middle;
+    width: 10%;
+    padding: 11px;
+}
+
