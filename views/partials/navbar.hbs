@@ -1,41 +1,18 @@
-<link rel="stylesheet" type="text/css" href="/public/css/navbar.css">
-<div id = "logo">
-    <h1 id="Photo">Photo <span id="Hub">Hub</span></h1>
-</div>
-<input id = "searchText" name = "searchText" type = "text">
-<button type = "submit" id = "searchButton"><i id = "searchButton2" class = "fa fa-search"></i></button>
-<br>
-<br>
-<br>
-
-<ul>
-  <li><a href="/">Home</a></li>
-  {{#if logged}}
-  <li><a href="" id="logout">Logout</a></li>
-  {{else}}
-  <li><a href="/login">Login</a></li>
-  {{/if}}
-  <li><a href="/registration">Registration</a></li>
-  <li><a href="/postimage">Create Post</a></li>
-</ul>
-
-
-{{!-- {{#if logged}}
-<script>
-    let ele = document.getElementById('logout');
-    if (ele) {
-        ele.onclick = (even) => {
-            fetch('/users/logout',
-                {
-                    method: "POST"
-                })
-                .then((data) => {
-                    location.replace('/');
-                })
-        }
-    }
-</script>
-{{/if}} --}}
-<br>
-<br>
-<hr>
+<div class="container">
+		<div class="menu-button">Menu</div>
+		<ul class="flexnav" data-breakpoint="800">
+			<li><a href="#">Home</a></li>
+			<li>
+				<a href="#">Popular</a>
+			</li>
+			<li>
+                <a href="#">Recent</a>
+            </li>
+			<li>
+                <a href="#">All</a>
+            </li>
+			<li>
+                <a href="#">Search</a>
+            </li>
+		</ul>
+	</div>
