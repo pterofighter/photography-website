@@ -13,4 +13,8 @@ router.get('/login', function(req, res, next) {
   res.render('login')
 })
 
+router.get('/postImage', function(req, res, next) {
+  res.render('postimage')
+});
+
 module.exports = router;
