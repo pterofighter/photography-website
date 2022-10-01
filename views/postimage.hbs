@@ -1,0 +1,23 @@
+<form id="postimage" method = "POST" enctype = "multipart/form-data" action = '/posts/createPost'>
+    <div class="container">
+        <h1>Create Post</h1>
+        <hr>
+
+        <div class="textFields">
+            <label for="postTitle"><b>Post's Title</b></label>
+            <input type="text" placeholder="Enter post's title" name="postTitle" id="postTitle" required>
+
+            <label for="postDesc"><b>Post's Description</b></label>
+            <input type="text" placeholder="Enter post's description" name="postDesc" id="postDesc" required>
+
+            <label for="postImg"> <b>Post's Image</b></label>
+            <input type="file" placeholder="choose a file" name="postImg" id="postImg" required>
+        </div>
+        <hr>
+
+        <label for="userPolicy">I accept the image post policy</label>
+        <input type="checkbox" name="policyCheck" id="policy check" required>
+
+        <input type="submit" id="submitButton" class="submitButton">
+    </div>
+</form>
