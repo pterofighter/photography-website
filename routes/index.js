@@ -18,7 +18,7 @@ router.get('/postImage', function(req, res, next) {
 });
 
 router.get('/registration', function(req, res, next) {
-  res.render(registration)
+  res.render('registration')
 })
 
 module.exports = router;

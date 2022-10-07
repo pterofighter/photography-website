@@ -1,5 +1,6 @@
 var express = require('express');
 const UserModel = require('../models/Users');
+const {body, validationResult} = require('express-validator');
 var router = express.Router();
 
 /* GET users listing. */
@@ -8,6 +9,12 @@ router.get('/register',
 function(req, res, next) {
   let username = req.body.username;
   let password = req.body.password;
+
+  const errors = validationResult(req);
+  if(!errors.isEmpty())
+  {
+    return res.status(400).json({errors: errors.array()});
+  }
 
   UserModel.usernameExists(username)
   .then( (userDoesNameExist) => {
