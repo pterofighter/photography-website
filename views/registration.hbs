@@ -1,0 +1,50 @@
+<form id="registration" method="POST" action="/users/register" enctype="application/x-www-form-urlencoded">
+    <div class="container">
+        <h1>Register</h1>
+        <p>Create an account</p>
+        <hr>
+
+        <div class="textFields">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter username" name="username" id="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter password" name="password" id="password" required>
+
+            <label for="confirmPassword"><b>Confirm password</b></label>
+            <input type="password" placeholder="confirm password" name="confirmPassword" id="confirmPassword" required>
+        </div>
+        <hr>
+
+        <label for="ageCheck"> I am 13 or older</label>
+        <input type="checkbox" name="ageCheck" id="ageCheck" required>
+
+        <label for="TOSCheck">I have read the terms and conditions</label>
+        <input type="checkbox" name="TOSCheck" id="TOSCheck" required>
+        <a href="">TOS and Privacy Rules</a>
+
+        <input type="submit" id="submitButton" class="submitButton">
+
+        <div id="usernameMessage">
+            <h3>username must contain the following: </h3>
+            <p id="usernameAlphabetical" class="invalid">begin with an alphabetical character</p>
+            <p id="usernameLength" class="invalid">at least 3 alphabetical characters</p>
+        </div>
+
+        <div id="passwordMessage">
+            <h3>password must contain the following: </h3>
+            <p id="passLength" class="invalid">contain 8 or more characters</p>
+            <p id="passUpper" class="invalid">contain at least 1 upper case letter</p>
+            <p id="passNum" class="invalid">contain at least 1 number</p>
+            <p id="passSpecial" class="invalid">contain at least 1 special character</p>
+        </div>
+
+        <div id="confirmPasswordMessage">
+            <p id="passwordMatch" class="invalid">passwords must match</p>
+        </div>
+
+        <div id="submitMessage">
+            <h3>Please check that all data you have entered is valid</h3>
+        </div>
+    </div>
+</form>
