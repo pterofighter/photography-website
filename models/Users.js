@@ -2,7 +2,7 @@ var db = require('../config/database');
 var bcrypt = require('bcrypt');
 const UserModel = {};
 
-UserModel.create = (username, password, email) => 
+UserModel.create = (username, password) => 
 {
     return bcrypt.hash(password, 15)
     .then( (hashedPassword) =>

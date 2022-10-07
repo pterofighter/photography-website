@@ -4,24 +4,28 @@ const {body, validationResult} = require('express-validator');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/register', 
+router.post('/register', 
 [body('username').isLength({min:1}), body('password').isLength({min:8})],
-function(req, res, next) {
+(req, res, next) => {
+  console.log("its function calling time!");
   let username = req.body.username;
   let password = req.body.password;
 
   const errors = validationResult(req);
   if(!errors.isEmpty())
   {
+    console.log("oh no back to the errors again");
     return res.status(400).json({errors: errors.array()});
   }
 
+  console.log("its creatin time!")
   UserModel.usernameExists(username)
   .then( (userDoesNameExist) => {
     if(userDoesNameExist) {
       throw "user already exist"
     }
     else{
+      console.log("oh yeah passed the username test time to create")
       return UserModel.create(username, password);
     }
   })
@@ -30,7 +34,7 @@ function(req, res, next) {
       throw "something went wrong when trying to create"
     }
     else {
-      res.direct('home')
+      res.redirect('homepage')
     }
   })
   .catch((err) => {
@@ -38,9 +42,6 @@ function(req, res, next) {
     console.log(err);
     next(err);
   })
-
-
-  res.send('respond with a resource');
 });
 
 module.exports = router;
