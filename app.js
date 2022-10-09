@@ -31,10 +31,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/posts', postRouter)
-
 var mysqlSessionStore = new mysqlSession(
   {
   /* empty means using default options*/
@@ -49,6 +45,16 @@ app.use(sessions({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/posts', postRouter)
+
+
+
+app.use( (req, res, next) => {
+  console.log("session is " + req.session);
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

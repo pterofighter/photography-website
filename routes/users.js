@@ -7,6 +7,7 @@ var router = express.Router();
 router.post('/register', 
 [body('username').isLength({min:1}), body('password').isLength({min:8})],
 (req, res, next) => {
+  console.log("registrating user");
   let username = req.body.username;
   let password = req.body.password;
 
@@ -40,7 +41,7 @@ router.post('/register',
   })
 });
 
-router.post("/login", 
+router.post('/login', 
 [body('username').isLength({min:1}), body('password').isLength({min:8})],
 (req, res, next) => {
   let username = req.body.username;
@@ -49,8 +50,23 @@ router.post("/login",
   if (!errors.isEmpty()) {
     return res.status(400).json({errors: errors.array()});
   }
-})
-
+  UserModel.authenticate(username, password)
+  .then( (loggedUserId) => {
+    if (loggedUserId > 0) {
+      req.session.username = username;
+      req.session.userId = loggedUserId;
+      res.redirect("/")
+    }
+    else {
+      throw "something went wrong when logging in"
+    }
+  })
+  .catch((err) => {
+    console.log("an error occured when trying to log in");
+    console.log(err);
+    next(err);
+  })
+});
 
 
 module.exports = router;

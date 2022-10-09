@@ -37,13 +37,13 @@ UserModel.usernameExists = (username) =>
 UserModel.authenticate = (username, password) => 
 {
     let userId; 
-    let baseSQL = "SELECT id, username, password FROM user WHERE username=?;";
+    let baseSQL = "SELECT user_id, username, password FROM user WHERE username=?;";
     return db.execute(baseSQL, [username])
     .then( ([results, fields]) =>
     {
         if (results && results.length == 1)
         {
-            userId = results[0].id;
+            userId = results[0].user_id;
             return bcrypt.compare(password, results[0].password);
         }
         else 
