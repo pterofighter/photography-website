@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var handlebars = require("express-handlebars");
+var sessions = require('express-session');
+var mysqlSession = require('express-mysql-session')(sessions);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -32,6 +34,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter)
+
+var mysqlSessionStore = new mysqlSession(
+  {
+  /* empty means using default options*/
+  }, 
+  require('./config/database')
+);
+
+app.use(sessions({
+  key : "somethingrandom",
+  secret: "something even more random",
+  store: mysqlSessionStore,
+  resave: false,
+  saveUninitialized: false
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
