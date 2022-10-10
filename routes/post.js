@@ -17,9 +17,51 @@ var storage = multer.diskStorage({
 var uploader = multer({storage: storage});
 
 router.post('/createPost', uploader.single("postImg"),(req, res, next) => {
-    console.log("AHHHHHHHHHHHHHHHH!")
-    console.log(req);
-    res.send('');
+    let fileUploaded = req.file.path;
+    let fileAsThumbnail = `thumbnail-${req.file.filename}`;
+    let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
+    let title = req.body.postTitle;
+    let description = req.body.postDesc; 
+    let fk_userId = req.session.userId;
+    sharp(fileUploaded)
+    .resize(200) 
+    .toFile(destinationOfThumbnail)
+    .then(() => 
+    {
+        return PostModel.create(
+            title, description, fileUploaded, destinationOfThumbnail, fk_userId
+        );
+    })
+    .then((postWasCreated) => 
+    {
+        if(postWasCreated)
+        {
+            // req.flash('success', "Your post was created successfully!");
+            res.redirect('/');
+        }
+        else 
+        {
+            throw "post could not be created"
+            // throw new PostError('Post could not be created!', '/postImage', 200);
+            
+        }
+    })
+    .catch((err) => 
+    {
+        print(err);
+        // if(err instanceof PostError)
+        // {
+        //     errorPrint(err.getMessage());
+        //     req.flash('error', err.getMessage());
+        //     res.status(err.getStatus());
+        //     res.redirect(err.getRedirectURL());
+        // }
+        // else 
+        // {
+        //     next(err);
+        // }
+    })
+    
 }); 
 
 
