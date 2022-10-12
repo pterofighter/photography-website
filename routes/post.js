@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var PostModel = require('../models/Posts');
 
 var sharp = require('sharp');
 var multer = require('multer');
@@ -17,12 +18,14 @@ var storage = multer.diskStorage({
 var uploader = multer({storage: storage});
 
 router.post('/createPost', uploader.single("postImg"),(req, res, next) => {
+    console.log("req is", req.body, req.file.path);
     let fileUploaded = req.file.path;
     let fileAsThumbnail = `thumbnail-${req.file.filename}`;
     let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
     let title = req.body.postTitle;
     let description = req.body.postDesc; 
     let fk_userId = req.session.userId;
+    console.log("title", title, "desc", desc);
     sharp(fileUploaded)
     .resize(200) 
     .toFile(destinationOfThumbnail)
@@ -48,7 +51,7 @@ router.post('/createPost', uploader.single("postImg"),(req, res, next) => {
     })
     .catch((err) => 
     {
-        print(err);
+        console.log(err);
         // if(err instanceof PostError)
         // {
         //     errorPrint(err.getMessage());
