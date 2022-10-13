@@ -15,7 +15,7 @@ PostModel.create = (title, description, photopath, thumbnail, fk_userId) =>
 
 PostModel.search = (searchTerm) => 
 {
-    let baseSQL = "SELECT id, title, description, thumbnail, concat_ws(' ', title, description) AS haystack FROM posts HAVING haystack like ?;";
+    let baseSQL = "SELECT photo_id, title, description, thumbnail_path, concat_ws(' ', title, description) AS haystack FROM photo HAVING haystack like ?;";
     let sqlReadySearchTerm = "%"+searchTerm+"%";
     return db.execute(baseSQL, [sqlReadySearchTerm])
     .then(([results, fields]) => 
@@ -27,7 +27,7 @@ PostModel.search = (searchTerm) =>
 
 PostModel.getNRecentPosts = (numberOfPost) => 
 {
-    let baseSQL = `SELECT id, title, description, thumbnail, created FROM posts ORDER BY created DESC LIMIT ${numberOfPost}`
+    let baseSQL = `SELECT photo_id, title, description, thumbnail_path, date_created FROM photo ORDER BY date_created DESC LIMIT ${numberOfPost}`
     return db.execute( baseSQL, []).then( ([results, fields]) => 
     {
         return Promise.resolve(results);
@@ -38,7 +38,7 @@ PostModel.getNRecentPosts = (numberOfPost) =>
 PostModel.getPostById = (postId) => 
 {
     let baseSQL =
-    "SELECT u.username, p.title, p.description, p.photopath, p.created  FROM users u JOIN posts p ON u.id = fk_userid WHERE p.id = ?;";
+    "SELECT u.username, p.title, p.description, p.photo_path, p.date_created  FROM users u JOIN posts p ON u.user_id = fk_user_id WHERE p.photo_id = ?;";
 
     return db.execute(baseSQL, [postId])
     .then( ( [results, fields]) =>
