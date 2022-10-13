@@ -11,21 +11,20 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         let fileExt = file.mimetype.split('/')[1];
-        cb(null, file.fieldname + "." + fileExt)
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, uniqueSuffix + "." + fileExt)
     }
 })
 
 var uploader = multer({storage: storage});
 
 router.post('/createPost', uploader.single("postImg"),(req, res, next) => {
-    console.log("req is", req.body, req.file.path);
     let fileUploaded = req.file.path;
     let fileAsThumbnail = `thumbnail-${req.file.filename}`;
-    let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
+    let destinationOfThumbnail = req.file.destination + "/thumbnails/" + fileAsThumbnail;
     let title = req.body.postTitle;
     let description = req.body.postDesc; 
     let fk_userId = req.session.userId;
-    console.log("title", title, "desc", desc);
     sharp(fileUploaded)
     .resize(200) 
     .toFile(destinationOfThumbnail)

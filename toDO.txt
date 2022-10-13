@@ -1,6 +1,9 @@
 finish uploading image as a logged in user 
     make it so you can't upload if not logged in 
 
+handle crashing from no userid
+
+add express flash
 
 display images from db 
 
