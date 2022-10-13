@@ -7,7 +7,8 @@ router.get('/', getRecentPosts, function(req, res, next) {
   // imageList = []
   // imageList.push({src: "images/photos/SAM_0394.JPG", name: "what"})
   // imageList.push({src: "images/photos/SAM_0394.JPG", name: "how"})
-  // res.render('homepage', {imageList: imageList} );\
+  // res.render('homepage', {imageList: imageList} );
+  console.log("hehe", res.locals);
   res.render('homepage', {name: "Damon's website"});
 });
 

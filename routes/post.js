@@ -19,6 +19,7 @@ var storage = multer.diskStorage({
 var uploader = multer({storage: storage});
 
 router.post('/createPost', uploader.single("postImg"),(req, res, next) => {
+
     let fileUploaded = req.file.path;
     let fileAsThumbnail = `thumbnail-${req.file.filename}`;
     let destinationOfThumbnail = req.file.destination + "/thumbnails/" + fileAsThumbnail;
@@ -30,8 +31,10 @@ router.post('/createPost', uploader.single("postImg"),(req, res, next) => {
     .toFile(destinationOfThumbnail)
     .then(() => 
     {
+        //the substring for fileuploaded and destination of thumbnail is for stripping the public/ to display the images
+        //cause having that public/ at the start won't display the images for some reason
         return PostModel.create(
-            title, description, fileUploaded, destinationOfThumbnail, fk_userId
+            title, description, fileUploaded.substring(6), destinationOfThumbnail.substring(6), fk_userId
         );
     })
     .then((postWasCreated) => 
