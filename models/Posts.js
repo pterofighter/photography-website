@@ -27,7 +27,7 @@ PostModel.search = (searchTerm) =>
 
 PostModel.getNRecentPosts = (numberOfPost) => 
 {
-    let baseSQL = `SELECT photo_id, title, description, thumbnail_path, date_created FROM photo ORDER BY date_created DESC LIMIT ${numberOfPost}`
+    let baseSQL = `SELECT photo_id, title, description, thumbnail_path, date_created FROM photo ORDER BY date_created DESC LIMIT ${numberOfPost}`;
     return db.execute( baseSQL, []).then( ([results, fields]) => 
     {
         return Promise.resolve(results);

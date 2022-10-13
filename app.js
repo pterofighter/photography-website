@@ -9,7 +9,7 @@ var mysqlSession = require('express-mysql-session')(sessions);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var postRouter = require('./routes/post')
+var postRouter = require('./routes/post');
 
 var app = express();
 
@@ -48,7 +48,7 @@ app.use(sessions({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/posts', postRouter)
+app.use('/posts', postRouter);
 
 
 
