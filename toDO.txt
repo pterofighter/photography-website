@@ -6,5 +6,8 @@ handle crashing from no userid
 add express flash
 
 display images from db 
+    display the full res image from db
 
+make the homepage look better
+    add css to the homepage
 
