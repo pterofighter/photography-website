@@ -1,0 +1,103 @@
+<div id = "postContainer">
+    <header id = "postTitle">
+        <h2 id = "postTitleText">{{currentPost.title}}</h2>
+    </header>
+    <div id = "photo-container"></div>
+        <img id ="postImg" src = "/{{currentPost.photopath}}">
+        <div id = "post-info">
+            
+            <div id = "postAuthor" class = "infoTags">{{currentPost.username}}</div>
+            <div id = "postDate" class = "infoTags">{{currentPost.created}}</div>
+            <br>
+            <div id = "postDesc" class = "infoTags">{{currentPost.description}}</div>
+        </div>
+    </div>
+{{!-- 
+    <div id = "comment-container">
+        <header id = "commentTitle">
+            <h2>Comments</h2>
+        </header>
+
+        <form >
+            <div id = "commentBox">
+                <textarea name = "comment" id = "commentBoxText"></textarea>
+                <i id = "commentBoxButton" aria-hidden="true" style = "text-align: center;"></i>
+                <button type = "submit" id = "postComment">post Comment</button>
+            </div>
+        </form>
+
+
+        <div id ="messages">
+            {{#each currentPost.comments}}
+                {{>comment this}}
+            {{/each}}
+        </div>
+        
+    </div> --}}
+</div>
+
+
+{{!-- <script>
+    document.addEventListener('DOMContentLoaded', (event) =>
+    {
+        document.querySelectorAll('span[class=date-posted]').forEach((postedDate) =>
+        {
+            postedDate.textContent = new Date(postedDate.textContent).toLocaleDateString();
+        });
+    });
+
+    function addMessage(data)
+    {
+        let template = document.createElement('template');
+        template.innerHTMl = 
+        `<div id = "messages-${data.commentId}">
+            <stong class = "author-text">@${data.username}</stong>
+            <span class = "date-posted">${new Date().toLocalString()}</span>
+            <div class = "comment-text">${data.comment}}</div>
+        </div>`;
+        document.getElementById('messages').firstChild.before(template.content.firstChild);
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => 
+    {
+        document.getElementById('postComment').onclick = (event) => 
+        {
+            let commentText = document.getElementById('commentBoxText').value;
+            let postId = document.location.pathname.match(/\d+/g).map(Number)[0];
+
+            if(!commentText)
+            { 
+                return;
+            }
+
+            let fetchOptions = 
+            {
+                method: "POST",
+                headers: 
+                {
+                    "Content-Type": "Application/json"
+                },
+                body: JSON.stringify(
+                {
+                    comment: commentText,
+                    postId: postId
+                })
+            }
+            fetch('/comments/create', fetchOptions)
+            .then( (response) => response.json())
+            .then((data) => 
+            {
+                if(data.code == 1)
+                {
+                    addMessage(data);
+                }
+                else  
+                {
+                    addFlashFromFrontEnd(data.message);
+                }
+            })
+            .catch( err => console.log(err));
+        }
+    });
+
+</script> --}}
