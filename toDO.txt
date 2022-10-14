@@ -11,3 +11,6 @@ display images from db
 make the homepage look better
     add css to the homepage
 
+add css to the individual posts
+
+add a search bar

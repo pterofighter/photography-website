@@ -39,7 +39,8 @@ postMiddleware.getPostById =  async function(req, res, next)
     }
     catch (error) 
     {
-        next(err);
+        console.log(error);
+        next(error);
     }
 }
 

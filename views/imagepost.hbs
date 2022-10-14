@@ -3,11 +3,11 @@
         <h2 id = "postTitleText">{{currentPost.title}}</h2>
     </header>
     <div id = "photo-container"></div>
-        <img id ="postImg" src = "/{{currentPost.photopath}}">
+        <img id ="postImg" src = {{currentPost.photo_path}}>
         <div id = "post-info">
             
             <div id = "postAuthor" class = "infoTags">{{currentPost.username}}</div>
-            <div id = "postDate" class = "infoTags">{{currentPost.created}}</div>
+            <div id = "postDate" class = "infoTags">{{currentPost.date_created}}</div>
             <br>
             <div id = "postDesc" class = "infoTags">{{currentPost.description}}</div>
         </div>
