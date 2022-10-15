@@ -3,7 +3,8 @@ finish uploading image as a logged in user
 
 handle crashing from no userid
 
-add express flash
+add express flash (WIP)
+    make the div boxes to display the express flash message
 
 display images from db 
     display the full res image from db

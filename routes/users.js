@@ -55,6 +55,8 @@ router.post('/login',
     if (loggedUserId > 0) {
       req.session.username = username;
       req.session.userId = loggedUserId;
+      res.locals.logged = true;
+      req.flash('success', 'you have been sucessfully logged in');
       res.redirect("/")
     }
     else {
@@ -63,8 +65,9 @@ router.post('/login',
   })
   .catch((err) => {
     console.log("an error occured when trying to log in");
+    req.flash('error', err);
     console.log(err);
-    next(err);
+    res.redirect('/login');
   })
 });
 

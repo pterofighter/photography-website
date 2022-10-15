@@ -6,6 +6,7 @@ var logger = require('morgan');
 var handlebars = require("express-handlebars");
 var sessions = require('express-session');
 var mysqlSession = require('express-mysql-session')(sessions);
+var flash = require('express-flash');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -46,6 +47,18 @@ app.use(sessions({
   saveUninitialized: false
 }));
 
+app.use(flash());
+
+app.use( (req, res, next) => 
+{
+    console.log(req.session);
+    if(req.session.username)
+    {
+        res.locals.logged = true;
+    }
+    next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter);
@@ -68,6 +81,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 
 
