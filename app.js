@@ -20,6 +20,13 @@ const hbs = handlebars.create({
   partialsDir: path.join(__dirname, "views/partials"),
   extname: ".hbs",
   defaultLayout: "home",
+  helpers: {
+    emptyObject: (obj) => 
+    {
+        return !(obj.constructor === Object && Object.keys(obj).length ==0);
+    }
+    //add helpers here
+  }
 });
 
 app.engine("hbs", hbs.engine);
