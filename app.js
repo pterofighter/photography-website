@@ -21,11 +21,11 @@ const hbs = handlebars.create({
   extname: ".hbs",
   defaultLayout: "home",
   helpers: {
+    //helper function to determine if flash message is empty
     emptyObject: (obj) => 
     {
         return !(obj.constructor === Object && Object.keys(obj).length ==0);
     }
-    //add helpers here
   }
 });
 
