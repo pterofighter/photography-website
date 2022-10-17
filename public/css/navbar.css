@@ -230,4 +230,23 @@ body {
       padding-left: 82px;
     }
   }
+
+#flash-message 
+{
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%,0);
+    z-index: 9999;
+
+}
+
+#flash-message div 
+{
+    text-align: center;
+    color: #1b1b1b;
+    background: #ffa500;
+    border-radius: 1px;
+    padding-block: 3px;
+}
   
