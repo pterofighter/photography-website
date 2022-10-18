@@ -7,6 +7,7 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="css/home.css">
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/post.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="javascripts/frontend.js"></script>
     {{>navbar}}
@@ -15,7 +16,6 @@
 <body>
     {{!-- {{log this}} --}}
     {{#if (emptyObject messages)}}
-    {{!-- {{#if messages}} --}}
     {{> flashmessage}}
     {{/if}}
     {{{body}}}
