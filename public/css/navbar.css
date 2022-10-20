@@ -235,6 +235,11 @@ body {
     margin-top: 9%;
     width: 100%;
   }
+  #searchButton {
+    margin-top: 27%;
+    width: 100%;
+    margin-left: 20%;
+  }
 
 
 #flash-message 
