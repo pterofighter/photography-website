@@ -31,49 +31,49 @@ function setFlashMessageFade(flashMessageElement)
 //     setFlashMessageFade(flashMessageDiv);
 // }
 
-// function createCard(postData)
-// {
-//     return `<div id = "post-${postData.id}" class = "card">
-//     <img class = "cardImg" src = "${postData.thumbnail}" alt = "Missing Image">
-//     <div class = "cardBody">
-//         <p class = "cardTitle">${postData.title}</p>
-//         <p class = "cardText">${postData.description}</p>
-//         <a href = "/post/${postData.id}" class = "anchorButtons">Post Details</a>
-//     </div>
-// </div>`;
-// }
+function createCard(postData)
+{
+    return `<div id = "post-${postData.id}" class = "card">
+    <img class = "cardImg" src = "${postData.thumbnail_path}" alt = "Missing Image">
+    <div class = "cardBody">
+        <p class = "cardTitle">${postData.title}</p>
+        <p class = "cardText">${postData.description}</p>
+        <a href = "/post/${postData.id}" class = "anchorButtons">Post Details</a>
+    </div>
+</div>`;
+}
 
-// function executeSearch() 
-// {
-//     let searchTerm = document.getElementById('searchText').value;
-//     if(!searchTerm)
-//     {
-//         location.replace('/');
-//         return;
-//     }
-//     let mainContent = document.getElementById('container');
-//     let searchURL = `/posts/search?search=${searchTerm}`;
-//     fetch(searchURL)
-//     .then((data) => 
-//     {
-//         return data.json();
-//     })
-//     .then( (data_json) => 
-//     {
-//         let newMainContentHTML = '';
-//         data_json.results.forEach( (row) => 
-//         {
-//             newMainContentHTML += createCard(row);
-//         });
-//         console.log(newMainContentHTML);
-//         mainContent.innerHTML = newMainContentHTML;
-//         if(data_json.message) 
-//         {
-//             addFlashFromFrontEnd(data_json.message);
-//         }
-//     })
-//     .catch((err) => console.log(err)); 
-// }
+function executeSearch() 
+{
+    let searchTerm = document.getElementById('searchText').value;
+    if(!searchTerm)
+    {
+        location.replace('/');
+        return;
+    }
+    let mainContent = document.getElementById('container');
+    let searchURL = `/posts/search?search=${searchTerm}`;
+    fetch(searchURL)
+    .then((data) => 
+    {
+        return data.json();
+    })
+    .then( (data_json) => 
+    {
+        let newMainContentHTML = '';
+        data_json.results.forEach( (row) => 
+        {
+            newMainContentHTML += createCard(row);
+        });
+        console.log(newMainContentHTML);
+        mainContent.innerHTML = newMainContentHTML;
+        if(data_json.message) 
+        {
+            addFlashFromFrontEnd(data_json.message);
+        }
+    })
+    .catch((err) => console.log(err)); 
+}
 
 let flashElement = document.getElementById('flash-message');
 if (flashElement)
@@ -81,11 +81,11 @@ if (flashElement)
     setFlashMessageFade(flashElement);
 }
 
-// let searchButton = document.getElementById('searchButton');
-// if (searchButton)
-// {
-//     searchButton.onclick = executeSearch;
-// }
+let searchButton = document.getElementById('searchButton');
+if (searchButton)
+{
+    searchButton.onclick = executeSearch;
+}
 
 
 
