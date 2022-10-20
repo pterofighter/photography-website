@@ -69,6 +69,53 @@ router.post('/createPost', uploader.single("postImg"),(req, res, next) => {
     
 }); 
 
+//to access this search you would enter this in the url
+//localhost:3000/posts/search?search=value
+router.get('/search', async (req, res, next) => 
+{
+    try
+    {
+        let searchTerm = req.query.search;
+        if(!searchTerm)
+        {
+            res.send(
+            {
+                resultsStatus: "info",
+                message: "No search term given",
+                results: []
+            });
+        }
+        else 
+        {
+            //sql code to search from posts with any field with the ? we give it
+            let results = await PostModel.search(searchTerm);
+        
+            if(results.length)
+            {
+                res.send(
+                {
+                    resultsStatus: "info",
+                    message: `${results.length} results found`,
+                    results: results
+                });
+            }
+            else 
+            {
+                let results = await PostModel.getNRecentPosts(9)
+                res.send(
+                {
+                    resultsStatus: "info", 
+                    message: `No results where found for your search: ${searchTerm}, but here are the 8 most recent posts`,
+                    results: results
+                });
+            }
+        }
+    }
+    catch(err)
+    {
+        next(err);
+    }
+});
 
 
 
