@@ -230,6 +230,12 @@ body {
       padding-left: 82px;
     }
   }
+  #search {
+    /* float: right; */
+    margin-top: 9%;
+    width: 100%;
+  }
+
 
 #flash-message 
 {

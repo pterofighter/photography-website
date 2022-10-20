@@ -3,13 +3,7 @@ finish uploading image as a logged in user
 
 handle crashing from no userid
 
-
-display images from db 
-    display the full res image from db
-
 make the homepage look better
-    add css to the homepage
-
-add css to the individual posts
+    make it so it can load as many posts as possbible
 
 add a search bar
