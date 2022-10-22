@@ -19,6 +19,23 @@ postMiddleware.getRecentPosts = function(req, res, next)
     .catch( (err) => next(err));
 }
 
+//maybe change it in the future to actually get all or something idk
+postMiddleware.getAllPosts = function(req, res, next)
+{ 
+    getNRecentPosts(100)
+    .then( (results) => 
+    {
+        res.locals.results = results;
+        if (results.length == 0)
+        {
+            console.log("no posts to show");
+            // req.flash('error', 'There are no posts to show');
+        }
+        next();
+    })
+    .catch( (err) => next(err));
+}
+
 postMiddleware.getPostById =  async function(req, res, next)
 {
     try 
