@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {getRecentPosts, getPostById} = require('../middleware/postsmiddleware');
+const {getRecentPosts, getPostById, getAllPosts} = require('../middleware/postsmiddleware');
 
 /* GET home page. */
 router.get('/', getRecentPosts, function(req, res, next) {
@@ -14,6 +14,10 @@ router.get('/', getRecentPosts, function(req, res, next) {
 router.get('/recent', getRecentPosts, function(req, res, next) {
   res.render('homepage', {name: "Damon's website"});
 });
+
+router.get('/all', getAllPosts, function(req, res, next) {
+  res.render('homepage')
+})
 
 router.get('/login', function(req, res, next) {
   res.render('login')
