@@ -11,6 +11,10 @@ router.get('/', getRecentPosts, function(req, res, next) {
   res.render('homepage', {name: "Damon's website"});
 });
 
+router.get('/recent', getRecentPosts, function(req, res, next) {
+  res.render('homepage', {name: "Damon's website"});
+});
+
 router.get('/login', function(req, res, next) {
   res.render('login')
 })
@@ -27,5 +31,6 @@ router.get('/post/:id(\\d+)', getPostById,(req, res, next) => //semicolon matche
 {
   res.render('imagepost', {title: `Post ${req.params.id}`});
 });
+
 
 module.exports = router;

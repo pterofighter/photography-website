@@ -5,5 +5,6 @@ handle crashing from no userid
 
 make the homepage look better
     make it so it can load as many posts as possbible
+    make the recent, home and all tags do something
 
 add a search bar
