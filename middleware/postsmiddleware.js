@@ -5,7 +5,7 @@ const postMiddleware = {};
 
 postMiddleware.getRecentPosts = function(req, res, next)
 { 
-    getNRecentPosts(9)
+    getNRecentPosts(12)
     .then( (results) => 
     {
         res.locals.results = results;
