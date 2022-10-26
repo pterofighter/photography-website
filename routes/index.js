@@ -17,6 +17,10 @@ router.get('/recent', getRecentPosts, function(req, res, next) {
 
 router.get('/all', getAllPosts, function(req, res, next) {
   res.render('homepage')
+});
+
+router.get('/about', function(req, res, next) {
+  res.render('about')
 })
 
 router.get('/login', function(req, res, next) {
