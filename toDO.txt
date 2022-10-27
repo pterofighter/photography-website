@@ -3,6 +3,10 @@ finish uploading image as a logged in user
 
 handle crashing from no userid
 
+fix crashing when database is down
+    fix helper function in app.js not being able to read undefined 
+    because the session flash message isn't there
+
 make the homepage look better
     make it so it can load as many posts as possbible
     make the recent, home and all tags do something
