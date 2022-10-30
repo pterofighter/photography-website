@@ -11,6 +11,5 @@ make the homepage look better
     make it so it can load as many posts as possbible
     make the recent, home and all tags do something
 
-add an about me page
 
 maybe add error message when database is down
